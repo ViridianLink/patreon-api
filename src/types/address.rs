@@ -3,15 +3,15 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Address {
-    addressee: String,
-    city: String,
-    country: String,
-    created_at: DateTime<Utc>,
-    line_1: String,
-    line_2: String,
-    phone_number: String,
-    postal_code: String,
-    state: String,
+    pub addressee: String,
+    pub city: String,
+    pub country: String,
+    pub created_at: DateTime<Utc>,
+    pub line_1: String,
+    pub line_2: String,
+    pub phone_number: String,
+    pub postal_code: String,
+    pub state: String,
 }
 
 impl Address {

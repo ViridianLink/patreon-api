@@ -3,22 +3,22 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Tier {
-    amount_cents: u64,
-    created_at: DateTime<Utc>,
-    description: String,
-    discord_role_ids: Option<Vec<String>>,
-    edited_at: DateTime<Utc>,
-    image_url: Option<String>,
-    patron_count: u64,
-    post_count: u64,
-    published: bool,
-    published_at: Option<DateTime<Utc>>,
-    remaining: Option<u64>,
-    requires_shipping: bool,
-    title: String,
-    unpublished_at: Option<DateTime<Utc>>,
-    url: String,
-    user_limit: Option<u64>,
+    pub amount_cents: u64,
+    pub created_at: DateTime<Utc>,
+    pub description: String,
+    pub discord_role_ids: Option<Vec<String>>,
+    pub edited_at: DateTime<Utc>,
+    pub image_url: Option<String>,
+    pub patron_count: u64,
+    pub post_count: u64,
+    pub published: bool,
+    pub published_at: Option<DateTime<Utc>>,
+    pub remaining: Option<u64>,
+    pub requires_shipping: bool,
+    pub title: String,
+    pub unpublished_at: Option<DateTime<Utc>>,
+    pub url: String,
+    pub user_limit: Option<u64>,
 }
 
 impl Tier {

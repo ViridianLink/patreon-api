@@ -3,13 +3,13 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PledgeEvent {
-    amount_cents: u64,
-    currency_code: String,
-    date: DateTime<Utc>,
-    pledge_payment_status: Option<String>,
-    payment_status: Option<String>,
-    tier_id: String,
-    tier_title: String,
+    pub amount_cents: u64,
+    pub currency_code: String,
+    pub date: DateTime<Utc>,
+    pub pledge_payment_status: Option<String>,
+    pub payment_status: Option<String>,
+    pub tier_id: String,
+    pub tier_title: String,
     #[serde(rename = "type")]
-    kind: String,
+    pub kind: String,
 }

@@ -3,12 +3,12 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Goal {
-    amount_cents: u64,
-    completed_percentage: u64,
-    created_at: DateTime<Utc>,
-    description: String,
-    reached_at: DateTime<Utc>,
-    title: String,
+    pub amount_cents: u64,
+    pub completed_percentage: u64,
+    pub created_at: DateTime<Utc>,
+    pub description: String,
+    pub reached_at: DateTime<Utc>,
+    pub title: String,
 }
 
 impl Goal {

@@ -3,17 +3,17 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Post {
-    app_id: Option<i64>,
-    app_status: Option<String>,
-    content: String,
-    embed_data: Option<serde_json::Value>,
-    embed_url: Option<String>,
-    is_paid: bool,
-    is_public: bool,
-    tiers: Vec<serde_json::Value>,
-    published_at: DateTime<Utc>,
-    title: String,
-    url: String,
+    pub app_id: Option<i64>,
+    pub app_status: Option<String>,
+    pub content: String,
+    pub embed_data: Option<serde_json::Value>,
+    pub embed_url: Option<String>,
+    pub is_paid: bool,
+    pub is_public: bool,
+    pub tiers: Vec<serde_json::Value>,
+    pub published_at: DateTime<Utc>,
+    pub title: String,
+    pub url: String,
 }
 
 impl Post {

@@ -3,21 +3,21 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Benefit {
-    app_external_id: Option<String>,
-    app_meta: Option<serde_json::Value>,
-    benefit_type: String,
-    created_at: DateTime<Utc>,
-    deliverables_due_today_count: u64,
-    delivered_deliverables_count: u64,
-    description: Option<String>,
-    is_deleted: bool,
-    is_ended: bool,
-    is_published: bool,
-    next_deliverable_due_date: Option<DateTime<Utc>>,
-    not_delivered_deliverables_count: u64,
-    rule_type: Option<String>,
-    tiers_count: u64,
-    title: String,
+    pub app_external_id: Option<String>,
+    pub app_meta: Option<serde_json::Value>,
+    pub benefit_type: String,
+    pub created_at: DateTime<Utc>,
+    pub deliverables_due_today_count: u64,
+    pub delivered_deliverables_count: u64,
+    pub description: Option<String>,
+    pub is_deleted: bool,
+    pub is_ended: bool,
+    pub is_published: bool,
+    pub next_deliverable_due_date: Option<DateTime<Utc>>,
+    pub not_delivered_deliverables_count: u64,
+    pub rule_type: Option<String>,
+    pub tiers_count: u64,
+    pub title: String,
 }
 
 impl Benefit {

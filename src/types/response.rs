@@ -42,8 +42,8 @@ pub struct Cursors {
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct ResourceData<D> {
-    attributes: D,
-    id: String,
+    pub attributes: D,
+    pub id: String,
     // #[serde(rename = "type")]
     // resource_type: String,
 }
