@@ -11,9 +11,33 @@ pub type CampaignPostsResponse = PatreonResponse<Vec<ResourceData<Post>>, PostIn
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PatreonResponse<D, I> {
-    data: D,
+    pub data: D,
     #[serde(default = "Vec::new")]
-    included: Vec<I>,
+    pub included: Vec<I>,
+    pub links: Option<Links>,
+    pub meta: Option<Meta>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Links {
+    pub self_: Option<String>,
+    pub next: Option<String>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Meta {
+    pub pagination: Pagination,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Pagination {
+    pub cursors: Cursors,
+    pub total: u64,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct Cursors {
+    pub next: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
