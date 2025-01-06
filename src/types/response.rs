@@ -8,6 +8,7 @@ pub type CampaignResponse = PatreonResponse<ResourceData<Campaign>, CampaignsInc
 pub type CampaignMembersResponse = PatreonResponse<Vec<ResourceData<Member>>, MemberIncluded>;
 pub type MemberResponse = PatreonResponse<ResourceData<Member>, MemberIncluded>;
 pub type CampaignPostsResponse = PatreonResponse<Vec<ResourceData<Post>>, PostIncluded>;
+pub type PostResponse = PatreonResponse<ResourceData<Post>, PostIncluded>;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct PatreonResponse<D, I> {

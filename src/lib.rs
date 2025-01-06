@@ -1,5 +1,6 @@
 pub mod endpoints;
 pub mod error;
+pub mod pagination_options;
 pub mod patreon_client;
 pub mod types;
 pub use error::Error;
@@ -63,12 +64,12 @@ mod tests {
             .unwrap();
 
         client
-            .campaign_members(CAMPAIGN_ID, MemberInclude::empty())
+            .campaign_members(CAMPAIGN_ID, MemberInclude::empty(), None)
             .await
             .unwrap();
 
         client
-            .campaign_members(CAMPAIGN_ID, MemberInclude::all())
+            .campaign_members(CAMPAIGN_ID, MemberInclude::all(), None)
             .await
             .unwrap();
     }

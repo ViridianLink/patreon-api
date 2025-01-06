@@ -8,6 +8,7 @@ pub enum Error {
     Reqwest(reqwest::Error),
     InvalidHeaderValue(reqwest::header::InvalidHeaderValue),
     UrlParse(url::ParseError),
+    Serde(serde_json::Error),
 }
 
 impl std::fmt::Display for Error {
@@ -33,5 +34,11 @@ impl From<reqwest::header::InvalidHeaderValue> for Error {
 impl From<url::ParseError> for Error {
     fn from(error: url::ParseError) -> Self {
         Error::UrlParse(error)
+    }
+}
+
+impl From<serde_json::Error> for Error {
+    fn from(error: serde_json::Error) -> Self {
+        Error::Serde(error)
     }
 }

@@ -1,10 +1,11 @@
 use url::Url;
 
+use crate::pagination_options::PaginationOptions;
 use crate::patreon_client::PatreonClient;
 use crate::types::includes::{CampaignInclude, IdentityInclude, MemberInclude, PostInclude};
 use crate::types::response::{
     CampaignMembersResponse, CampaignPostsResponse, CampaignResponse, CampaignsResponse,
-    IdentityResponse, MemberResponse,
+    IdentityResponse, MemberResponse, PostResponse,
 };
 use crate::types::{Address, Benefit, Campaign, Goal, Member, Post, Tier, User};
 use crate::Result;
@@ -86,6 +87,7 @@ impl PatreonClient {
         &self,
         campaign_id: u64,
         includes: MemberInclude,
+        pagination: Option<PaginationOptions>,
     ) -> Result<CampaignMembersResponse> {
         let mut url = Url::parse(BASE_URI).unwrap();
         url.set_path(&format!("/api/oauth2/v2/campaigns/{}/members", campaign_id));
@@ -112,6 +114,18 @@ impl PatreonClient {
         if includes.contains(MemberInclude::USER) {
             url.query_pairs_mut()
                 .append_pair("fields[user]", User::as_query());
+        }
+        if let Some(pagination) = pagination {
+            if let Some(count) = pagination.count {
+                url.query_pairs_mut()
+                    .append_pair("page[count]", &count.to_string());
+            }
+            if let Some(sort) = pagination.sort {
+                url.query_pairs_mut().append_pair("page[sort]", &sort);
+            }
+            if let Some(cursor) = pagination.cursor {
+                url.query_pairs_mut().append_pair("page[cursor]", &cursor);
+            }
         }
 
         self.get(url).await
@@ -179,7 +193,7 @@ impl PatreonClient {
         self.get(url).await
     }
 
-    pub async fn post(&self, post_id: u64, includes: PostInclude) -> Result<serde_json::Value> {
+    pub async fn post(&self, post_id: u64, includes: PostInclude) -> Result<PostResponse> {
         let mut url = Url::parse(BASE_URI).unwrap();
         url.set_path(&format!("/api/oauth2/v2/posts/{}", post_id));
 

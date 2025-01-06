@@ -45,8 +45,15 @@ impl PatreonClient {
     pub async fn get<T: DeserializeOwned>(&self, url: impl IntoUrl) -> Result<T> {
         let reqwest = self.client.get(url);
         let response = Self::validate_content_type(reqwest).await.unwrap();
-        let json = response.json().await.unwrap();
-        Ok(json)
+        let text = response.text().await.unwrap();
+        match serde_json::from_str::<T>(&text) {
+            Ok(json) => Ok(json),
+            Err(e) => {
+                #[cfg(test)]
+                std::fs::write("error.json", text).unwrap();
+                Err(e.into())
+            }
+        }
     }
 
     async fn validate_content_type(reqwest: RequestBuilder) -> Result<Response> {
