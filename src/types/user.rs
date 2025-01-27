@@ -4,6 +4,7 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct User {
     pub about: Option<String>,
     pub can_see_nsfw: Option<bool>,
@@ -31,6 +32,7 @@ impl User {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct SocialConnection {
     pub scopes: Option<Vec<String>>,
     pub url: Option<String>,

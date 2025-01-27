@@ -1,4 +1,7 @@
+use std::collections::HashMap;
+
 use serde::{Deserialize, Serialize};
+use serde_json::Value;
 
 use super::{Address, Benefit, Campaign, Goal, Member, PledgeEvent, Post, Tier, User};
 
@@ -11,6 +14,7 @@ pub type CampaignPostsResponse = PatreonResponse<Vec<ResourceData<Post>>, PostIn
 pub type PostResponse = PatreonResponse<ResourceData<Post>, PostIncluded>;
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct PatreonResponse<D, I> {
     pub data: D,
     #[serde(default = "Vec::new")]
@@ -20,36 +24,45 @@ pub struct PatreonResponse<D, I> {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct Links {
+    #[serde(rename = "self")]
     pub self_: Option<String>,
     pub next: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct Meta {
     pub pagination: Pagination,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct Pagination {
     pub cursors: Cursors,
     pub total: u64,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct Cursors {
     pub next: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 pub struct ResourceData<D> {
     pub attributes: D,
     pub id: String,
-    // #[serde(rename = "type")]
-    // resource_type: String,
+    #[serde(default)]
+    pub relationships: HashMap<String, Value>,
+    #[serde(rename = "type")]
+    resource_type: Option<String>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 #[serde(tag = "type")]
 #[serde(rename_all = "kebab-case")]
 pub enum IdentityIncluded {
@@ -58,6 +71,7 @@ pub enum IdentityIncluded {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 #[serde(tag = "type")]
 #[serde(rename_all = "kebab-case")]
 pub enum CampaignsIncluded {
@@ -68,6 +82,7 @@ pub enum CampaignsIncluded {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 #[serde(tag = "type")]
 #[serde(rename_all = "kebab-case")]
 pub enum MemberIncluded {
@@ -79,6 +94,7 @@ pub enum MemberIncluded {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[serde(deny_unknown_fields)]
 #[serde(tag = "type")]
 #[serde(rename_all = "kebab-case")]
 pub enum PostIncluded {
