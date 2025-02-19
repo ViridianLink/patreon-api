@@ -1,5 +1,6 @@
 pub mod endpoints;
 pub mod error;
+pub mod oauth;
 pub mod pagination_options;
 pub mod patreon_client;
 pub mod types;
