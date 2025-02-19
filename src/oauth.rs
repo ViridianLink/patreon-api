@@ -80,9 +80,8 @@ impl PatreonOAuth {
 #[serde(deny_unknown_fields)]
 pub struct TokensResponse {
     pub access_token: String,
-    pub expires_in: u64,
-    pub token_type: String,
-    pub scope: String,
     pub refresh_token: String,
-    pub version: String,
+    pub expires_in: u64,
+    pub scope: String,
+    pub token_type: String,
 }
